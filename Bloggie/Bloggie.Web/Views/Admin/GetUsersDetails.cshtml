@@ -1,0 +1,182 @@
+﻿@model Bloggie.Web.Models.User.Register
+@{
+    ViewData["Title"] = "UPDATE USER";
+}
+
+<h1 class="bg-info text-white"> User Personal Details</h1>
+
+<form asp-action="Update" method="post" id="regForm">
+    <div class="form-group">
+        <label asp-for="Id"></label>
+        <input asp-for="Id" class="form-control" readonly />
+        
+    </div>
+    <div class="form-group">
+        <label asp-for="Firstname"></label>
+        <input onchange=" fnameChange(event)" asp-for="Firstname" class="form-control" id="Firstname" readonly />
+        <span class="text-danger" id="FirstnameError"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Lastname"></label>
+        <input onchange="LnameChange(event)" asp-for="Lastname" class="form-control" id="Lastname" readonly />
+        <span class="text-danger" id="LastnameError"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="UserName"></label>
+        <input onchange=" usernameChange(event)" asp-for="UserName" class="form-control" id="Username" readonly />
+        <span class="text-danger" id="UsernameError"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PhoneNumber"></label>
+        <input onchange=" phoneChange(event)" asp-for="PhoneNumber" class="form-control" id="PhoneNumber" readonly />
+        <span class="text-danger" id="PhoneNumberError"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input onchange=" emailChange(event)" asp-for="Email" class="form-control" id="Email" readonly />
+        <span class="text-danger" id="EmptyEmailError"></span>
+    </div>
+
+    <div class="mt-2">
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a class="btn me-3 bg-light text-dark"
+           asp-area=""
+          
+           asp-controller="Admin"
+           asp-action="ResetPassword">Reset Password</a>
+    </div>
+
+</form>
+
+@section scripts {
+    @* <partial name="_ValidationScriptsPartial"/>*@
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+   }
+
+<script>
+
+    const form = document.getElementById('regForm');
+    const fname = document.getElementById("Firstname");
+    const lname = document.getElementById("Lastname");
+
+    const uname = document.getElementById("Username");
+    const phone = document.getElementById("PhoneNumber");
+    const eml = document.getElementById("Email");
+    const pswd = document.getElementById("Password");
+
+    form.addEventListener('submit', function (e) {
+     
+        console.log("function")
+        var re = /^([\w-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        if (fname.value == "") {
+          console.log("firstname")
+            e.preventDefault();
+            document.getElementById("FirstnameError").innerHTML = "Please Enter First name"
+        }
+        else {
+            document.getElementById("FirstnameError").innerHTML = ""
+        }
+        if (lname.value == "") {
+            e.preventDefault();
+            document.getElementById("LastnameError").innerHTML = "Please Enter Last name"
+        }
+        else {
+            document.getElementById("LastnameError").innerHTML = ""
+        }
+        if (uname.value == "") {
+            e.preventDefault();
+            document.getElementById("UsernameError").innerHTML = "Please Enter User name"
+        }
+        else {
+            document.getElementById("UsernameError").innerHTML = ""
+        }
+
+        if (phone.value == "") {
+            e.preventDefault();
+            document.getElementById("PhoneNumberError").innerHTML = "Please Enter Phone number"
+        }
+        else {
+            document.getElementById("PhoneNumberError").innerHTML = ""
+        }
+
+        if (eml.value == "" || eml.value !== "" && !re.test(eml.value)) {
+            e.preventDefault();
+            console.log("non empty email")
+            document.getElementById("EmptyEmailError").innerHTML = "Please EnterValid Email"
+        }
+        else {
+            document.getElementById("EmptyEmailError").innerHTML = ""
+        }
+        if (pswd.value == "") {
+            console.log("gteuserpassword empty")
+              e.preventDefault();
+            document.getElementById("PasswordError").innerHTML = "Please Enter Password"
+        }
+        else {
+            document.getElementById("PasswordError").innerHTML = ""
+        }
+
+    });
+
+    function fnameChange(event) {
+        if (event.target.value == "") {
+            document.getElementById("FirstnameError").innerHTML = "Please Enter First name"
+        }
+        else {
+            document.getElementById("FirstnameError").innerHTML = ""
+        }
+    }
+
+    function LnameChange(event) {
+        if (event.target.value == "") {
+            document.getElementById("LastnameError").innerHTML = "Please Enter Last name"
+        }
+        else {
+            document.getElementById("LastnameError").innerHTML = ""
+        }
+    }
+
+    function usernameChange(event) {
+        if (event.target.value == "") {
+            document.getElementById("UsernameError").innerHTML = "Please Enter User name"
+        }
+        else {
+            document.getElementById("UsernameError").innerHTML = ""
+        }
+    }
+
+
+    function phoneChange(event) {
+        if (event.target.value == "") {
+            document.getElementById("PhoneNumberError").innerHTML = "Please Enter Phone Number"
+        }
+        else {
+            document.getElementById("PhoneNumberError").innerHTML = ""
+        }
+    }
+
+    function emailChange(event) {
+        if (event.target.value == "") {
+            document.getElementById("EmailError").innerHTML = "Please Enter Email"
+        }
+        else {
+            document.getElementById("EmailError").innerHTML = ""
+        }
+    }
+
+    function passwordChange(event) {
+        if (event.target.value == "") {
+            document.getElementById("PasswordError").innerHTML = "Please Enter Password"
+        }
+        else {
+            document.getElementById("PasswordError").innerHTML = ""
+        }
+    }
+
+
+
+</script>
+

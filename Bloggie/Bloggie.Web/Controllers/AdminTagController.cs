@@ -1,7 +1,11 @@
 ﻿using Bloggie.Web.Data;
 using Bloggie.Web.Models.Domain;
 using Bloggie.Web.Models.ViewModels;
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Net;
+using System.Text.Json.Serialization;
 
 namespace Bloggie.Web.Controllers
 {
@@ -99,27 +103,7 @@ namespace Bloggie.Web.Controllers
             }
         }
 
-        // Edit tags controller and edit.cshtml list end
 
-        // delete tags controller start
-/*
-        [HttpGet]
-        public IActionResult Delete(Tag deleteTag)
-        {
-            var tag = bloggieDbContext.Tags.Find(deleteTag.Id);  
-            if(tag != null) 
-            {
-                bloggieDbContext.Tags.Remove(tag);
-
-                bloggieDbContext.SaveChanges();
-
-                return RedirectToAction("List");
-            }
-            else
-            {
-                return RedirectToAction("List");
-            }
-        }*/
         [HttpPost]
         public IActionResult Delete(EditTagModel EditTagModel)
         {
@@ -137,6 +121,7 @@ namespace Bloggie.Web.Controllers
                 return RedirectToAction("List");
             }
         }
+
 
     }
 }

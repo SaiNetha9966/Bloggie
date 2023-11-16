@@ -1,0 +1,78 @@
+﻿@model List< Bloggie.Web.Models.GetClientStore>
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+         <div class="col-lg-12 col-md-12">
+            <div class="table-responsive">
+                <table id="tabledemo" class="table table-striped">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th scope="col">AddressLine1</th>
+                            <th scope="col">AddressLine2</th>
+                            <th scope="col">City</th>
+                            <th scope="col">ClientStoreId</th>
+                            <th scope="col">ClientStoreName</th>
+                            <th scope="col">Latitude</th>
+                            <th scope="col">Longitude</th>
+                            <th scope="col">StateName</th>
+                            <th scope="col">StoreEcomStatus</th>
+                            <th scope="col">StoreEmail</th>
+                            <th scope="col">StoreNumber</th>
+                            <th scope="col">StorePhoneNumber</th>
+                            <th scope="col">StoreTimings</th>
+                            <th scope="col">WeeklyAdStoreId</th>
+                            <th scope="col">ZipCode</th>
+                        </tr>
+                    </thead>
+                    <tbody>              
+                    </tbody>
+                </table>
+                <div id="pagination"></div>
+            </div>
+        </div>
+</body>
+</html>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Home/getClient",
+                success: function (data) {
+                    console.log(data)
+                    var list = data.getClientStores
+                    var tr;
+                    for (var i = 0; i < list.length; i++) {
+                        tr = $('<tr/>');
+                        tr.append("<td>" + list[i].addressLine1 + "</td>");
+                        tr.append("<td>" + list[i].addressLine2 + "</td>");
+                        tr.append("<td>" + list[i].city + "</td>");
+                        tr.append("<td>" + list[i].clientStoreId + "</td>");
+                        tr.append("<td>" + list[i].clientStoreName + "</td>");
+                        tr.append("<td>" + list[i].latitude + "</td>");
+                        tr.append("<td>" + list[i].longitude + "</td>");
+                        tr.append("<td>" + list[i].stateName + "</td>");
+                        tr.append("<td>" + list[i].storeEcomStatus + "</td>");
+                        tr.append("<td>" + list[i].storeEmail + "</td>");
+                        tr.append("<td>" + list[i].storeNumber + "</td>");
+                        tr.append("<td>" + list[i].storePhoneNumber + "</td>");
+                        tr.append("<td>" + list[i].storeTimings + "</td>");
+                        tr.append("<td>" + list[i].weeklyAdStoreId + "</td>");
+                        tr.append("<td>" + list[i].zipCode + "</td>");
+                        $('table').append(tr);
+                    }
+                },
+                failure: function (response) {
+                    console.log("fal", response)
+                },
+                error: function (response) {
+                    console.log("error", response.statusText)
+                }
+            });
+        });
+    });
+</script>

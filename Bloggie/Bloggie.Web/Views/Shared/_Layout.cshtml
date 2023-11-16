@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Bloggie.Web.Models.User;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Register> signInManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -12,20 +16,44 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow">
             <div class="container">
-                <a class="navbar-brand" style="color:white" asp-area="" asp-controller="Home" asp-action="Index">Bloggie.Web</a>
+                <a class="navbar-brand" style="color:white" asp-area="" asp-controller="Home" asp-action="Index">SAIKIRAN</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item dropdown">
+
+                         <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="AboutUs">About Us</a>
+                        </li>
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home"  asp-action="DashBoard">DashBoard</a>
+                            </li>
+
+                            <li class="nav-item">   
+                                <a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="Read">Settings</a>
+                            </li>
+
+                        }
+
+
+
+                     
+                    @* 
+                         @if(signInManager.IsSignedIn(User))
+                        {
+                             <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Admin
                             </a>
+                            </li>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a class="dropdown-item"
@@ -44,8 +72,59 @@
                                         All Tags
                                     </a>
                                 </li>
-                    </ul>
+                                <li>
+                              <a class="btn"
+                               asp-area=""
+                               asp-controller="Admin"
+                               asp-action="Read">Users List</a>
+                                </li>
+
+                         </ul>
+                       
+                            
+                        } *@
+                       </ul>
                 </div>
+                  <div class="d-flex justify-content-between">
+
+                        @if(signInManager.IsSignedIn(User))
+                    {
+                         <div class="me-3 mt-2 text-light">
+
+                            <a class="anchorTag"
+                                   
+                                   asp-area=""
+                                   asp-controller="Admin"
+                                   asp-route-id="@User?.Identity?.Name"
+                               asp-action="GetUsersDetails"> @User?.Identity?.Name.ToUpper()</a>
+                            </div>
+                            
+                                <a class="btn me-3 bg-light text-dark"
+                               asp-area=""
+                               asp-controller="Admin"
+                        asp-action="LogOut">LogOut</a>
+                    }
+                    else
+                    {
+                        
+                            <a class="btn me-3 bg-light text-dark"
+                               asp-area=""
+                               asp-controller="Admin"
+                               asp-action="LogIn">Login</a>
+
+
+                            <a class="btn me-3 bg-light text-dark"
+                               asp-area=""
+                               asp-controller="Admin"
+                               asp-action="Create">Register</a>
+                    }
+
+
+                               
+
+                        
+
+                    </div>
             </div>
         </nav>
     </header>
@@ -55,9 +134,12 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Bloggie.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="border-top footer text-muted" style="background-color:black">
+        <div class="container" >
+            &copy; 2023 - Saikiran - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+
+            <a  asp-area="" asp-controller="Home" asp-action="Terms" style="margin-left:50px">Terms & Conditions</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -66,3 +148,12 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<style>
+    .anchorTag{
+        color:white;
+        text-decoration:none;
+
+    }
+</style>
+

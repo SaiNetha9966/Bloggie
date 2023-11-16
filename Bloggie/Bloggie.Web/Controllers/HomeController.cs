@@ -1,6 +1,10 @@
 ﻿using Bloggie.Web.Models;
+using Bloggie.Web.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Net;
+using System.Text.Json.Nodes;
 
 namespace Bloggie.Web.Controllers
 {
@@ -12,6 +16,9 @@ namespace Bloggie.Web.Controllers
         {
             _logger = logger;
         }
+
+
+       
 
         public IActionResult Index()
         {
@@ -28,5 +35,32 @@ namespace Bloggie.Web.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+
+        public IActionResult DashBoard()
+        {
+            return View();
+        }
+
+        public IActionResult Terms()
+        {
+            return View();
+        }
+
+        [HttpGet]
+
+        public IActionResult getClient()
+        {
+             var webClient = new WebClient();
+            var json = webClient.DownloadString(@"C:\Users\verit\Downloads\resjson.json");
+            var data = JsonConvert.DeserializeObject<Root>(json);            
+            return Json(data);
+
+        }
+      
     }
 }

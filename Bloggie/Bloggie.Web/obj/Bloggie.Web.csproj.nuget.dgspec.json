@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Asp.net\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj": {}
+    "D:\\Asp.net\\Bloggie Git\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj": {}
   },
   "projects": {
-    "D:\\Asp.net\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj": {
+    "D:\\Asp.net\\Bloggie Git\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Asp.net\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj",
+        "projectUniqueName": "D:\\Asp.net\\Bloggie Git\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj",
         "projectName": "Bloggie.Web",
-        "projectPath": "D:\\Asp.net\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj",
+        "projectPath": "D:\\Asp.net\\Bloggie Git\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj",
         "packagesPath": "C:\\Users\\verit\\.nuget\\packages\\",
-        "outputPath": "D:\\Asp.net\\Bloggie\\Bloggie.Web\\obj\\",
+        "outputPath": "D:\\Asp.net\\Bloggie Git\\Bloggie\\Bloggie.Web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\verit\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,18 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.12, )"
@@ -49,6 +61,22 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.12, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "jQuery.Validation": {
+              "target": "Package",
+              "version": "[1.19.5, )"
             }
           },
           "imports": [
